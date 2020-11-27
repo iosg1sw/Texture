@@ -141,7 +141,10 @@ static inline BOOL ASLayoutCanTransitionAsynchronous(ASLayout *layout) {
     // It can happen that a node already did a layout transition and added this subnode, in this case the subnode
     // would be removed from the new node instead of _node
     if (_node.automaticallyManagesSubnodes) {
-      [subnode _removeFromSupernodeIfEqualTo:_node];
+      if(![subnode isEqual:[NSNull null]])
+      {
+        [subnode _removeFromSupernodeIfEqualTo:_node];
+      }
     }
   }
 }
